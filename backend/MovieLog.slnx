@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MovieLog.API/MovieLog.API.csproj" />
+  <Project Path="MovieLog.Application/MovieLog.Application.csproj" />
+  <Project Path="MovieLog.Domain/MovieLog.Domain.csproj" />
+  <Project Path="MovieLog.Infrastructure/MovieLog.Infrastructure.csproj" />
+</Solution>
