@@ -4,3 +4,26 @@ GET {{MovieLog.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+### Crear una película
+POST {{MovieLog.API_HostAddress}}/api/Movies
+Content-Type: application/json
+
+{
+  "title": "Interstellar",
+  "description": "Una misión espacial para encontrar un nuevo hogar para la humanidad.",
+  "director": "Christopher Nolan",
+  "releaseYear": 2014,
+  "durationMinutes": 169,
+  "posterURL": null,
+  "sagaId": null
+}
+
+
+### Obtener una película por ID
+GET {{MovieLog.API_HostAddress}}/api/Movies/1
+Accept: application/json
+
+
+### Obtener una película inexistente
+GET {{MovieLog.API_HostAddress}}/api/Movies/99999
+Accept: application/json

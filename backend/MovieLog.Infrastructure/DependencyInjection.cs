@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MovieLog.Infrastructure.Data;
 using MovieLog.Application.Interfaces;
+using MovieLog.Infrastructure.Data;
 using MovieLog.Infrastructure.Repositories;
 
 namespace MovieLog.Infrastructure
@@ -16,6 +16,7 @@ namespace MovieLog.Infrastructure
             options.UseNpgsql(connectionString));
 
             services.AddScoped<IMovieRepository, MovieRepository>();
+
             return services;
 
         }

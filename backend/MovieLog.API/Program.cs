@@ -1,5 +1,8 @@
 using DotNetEnv;
+using Scalar.AspNetCore;
+using MovieLog.Application;
 using MovieLog.Infrastructure;
+
 
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
@@ -8,6 +11,8 @@ var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__Po
                     ?? throw new InvalidOperationException("Falta la cadena de conexión.");
 
 // Add services to the container.
+// Injects validators and application services into the service collection
+builder.Services.AddApplication();
 //Injects repositories and database context into the service collection
 builder.Services.AddInfrastructure(connectionString);
 
@@ -23,6 +28,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();
