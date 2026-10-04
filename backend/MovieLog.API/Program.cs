@@ -1,7 +1,19 @@
 using DotNetEnv;
+using MovieLog.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
+
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__PostgresConnection")
+                    ?? throw new InvalidOperationException("Falta la cadena de conexión.");
+
 // Add services to the container.
+//Injects repositories and database context into the service collection
+builder.Services.AddInfrastructure(connectionString);
+
+// Add Controllers to the service collection
+builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -33,6 +45,9 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+// Map controllers to the service collection
+app.MapControllers();
 
 app.Run();
 
